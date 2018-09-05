@@ -1,0 +1,54 @@
+<view class='container cart-container'>
+    <block wx:if='{{cartData.length > 0}}'>
+        <!-- 订单列表 -->
+        <view class='cart-box'>
+            <block wx:for='{{cartData}}'>
+                <view class='cart-item'>
+                    <view class='cart-item-main'>
+                        <!-- 选中状态 -->
+                        <view catchtap='toggleSelect' class='cart-item-checkbox' data-id='{{item.id}}' data-status='{{item.selectStatus}}'>
+                            <image wx:if='{{item.selectStatus}}' src='../../icon/icon/circle@selected.png'></image>
+                            <image wx:else src='../../icon/icon/circle@noselected.png'></image>
+                        </view>
+                        <!-- 中间图 -->
+                        <view data-id='{{item.id}}' catchtap='onProductTap' class='cart-item-img'>
+                            <image src='{{item.main_img_url}}'></image>
+                        </view>
+                        <!-- 右边内容 -->
+                        <view class='cart-item-word'>
+                            <view class='title-box'>
+                                <view>{{item.name}}</view>
+                                <view>￥{{item.price}}</view>
+                            </view>
+                            <view class='bottom-box'>
+                                <view class='cart-item-counts'>
+                                    <view class='btns {{item.counts==1?"disabled":""}}' catchtap='changeCounts' data-id='{{item.id}}' data-type='cut'>-</view>
+                                    <view class='counts'>{{item.counts}}</view>
+                                    <view class='btns' catchtap='changeCounts' data-id='{{item.id}}' data-type='add'>+</view>
+                                </view>
+                                <view class='delete' catchtap='delete' data-id='{{item.id}}'>×</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+        <!-- 底部合计 -->
+        <view class='footer-account-box all-accounts-box'>
+            <view class="all-select" ontap="toggleSelectAll" data-status="{{selectedTypeCounts==cartData.length?'true':'false'}}">
+                <image wx:if="{{selectedTypeCounts==cartData.length}}" class="title-icon" src="../../icon/icon/all@selected.png"></image>
+                <image wx:else class="title-icon" src="../../icon/icon/all.png"></image>
+                <text>全选({{selectedCounts}})</text>
+            </view>
+            <view class="all-price-submit {{account==0?'disabled':''}}" bindtap="submitOrder">
+                <view class="accounts-btn">下单</view>
+                <view class="price-text">￥{{account}}</view>
+                <view class="arrow-icon">
+                    <image wx:if="{{account==0}}" src="../../icon/icon/arrow@grey.png"></image>
+                    <image wx:else src="../../icon/icon/arrow.png"></image>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view wx:else class='no-data'>你还没有添加任何商品</view>
+</view>
