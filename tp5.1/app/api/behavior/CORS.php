@@ -11,7 +11,7 @@ class CORS
 		     'http://456.com',
 		     'http://94.191.42.70:8004'
 		];
-		// 跨域访问的时候才会存在此字段 $origin
+		// 跨域访问的时候才会存在此字段 $_SERVER['HTTP_ORIGIN']
 		$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 		if (!in_array($origin,$all_origin)){
 		      return;
