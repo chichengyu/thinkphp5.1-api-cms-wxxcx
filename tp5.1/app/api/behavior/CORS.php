@@ -6,6 +6,17 @@ class CORS
 	// CORS 跨域请求（简单请求与复杂请求）
 	public function run($params)
 	{
+	    /*   指定多个域名跨域
+		$all_origin = [
+		     'http://456.com',
+		     'http://94.191.42.70:8004'
+		];
+		$origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
+		if (!in_array($origin,$all_origin)){
+		      return;
+		}
+		header('Access-Control-Allow-Origin: '.$origin);
+	    */
 		// 允许所有的域访问
 		header('Access-Control-Allow-Origin: http://123.com');
 		// 允许访问的时候header允许携带的那些键值对
